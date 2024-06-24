@@ -3,24 +3,26 @@
 //select element
 const body = document.querySelector("body");
 
+// gstting data from json file
 const getData = async function () {
   const response = await fetch("./cars.json");
   const data = await response.json();
   return data;
 };
 
-//getData();
-
 //render data on html
-const renderData = function (data, html) {};
+const renderData = function (data) {
+  data.forEach((car) => {
+    body.insertAdjacentHTML(
+      "beforeend",
+      `<p> Name:${car.Name}, Horsepower:${car.Horsepower}, Origin:${car.Origin}, Year:${car.Year}</p>`
+    );
+  });
+};
 
 // main function:
 (async function () {
   const cars = await getData();
-  const html = `<br/>
-    <p>${cars.Name}, ${cars.Horsepower}, ${cars.Origin}, ${cars.Year}</p>
-    <br/>`;
-  // render data by looping through it
-
-  //add it to body body.insertAdjusentHtml.
+  console.log(cars);
+  renderData(cars);
 })();
