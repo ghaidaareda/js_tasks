@@ -1,0 +1,22 @@
+body {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+th {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: left;
+}
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}

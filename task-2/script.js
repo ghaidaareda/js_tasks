@@ -1,28 +1,45 @@
 "use strict";
 
 //select element
-const body = document.querySelector("body");
+const carsTable = document.querySelector("table");
 
 // gstting data from json file
 const getData = async function () {
-  const response = await fetch("./cars.json");
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch("./cars.json");
+    if (!response.ok)
+      throw new Error(`something went wrong ${response.status}`);
+
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.error(err.message);
+  }
 };
 
 //render data on html
 const renderData = function (data) {
   data.forEach((car) => {
-    body.insertAdjacentHTML(
+    carsTable.insertAdjacentHTML(
       "beforeend",
-      `<p> Name:${car.Name}, Horsepower:${car.Horsepower}, Origin:${car.Origin}, Year:${car.Year}</p>`
+      `<tbody>
+    <tr>
+      <td>${car.Name}</td>
+      <td>${car.Horsepower}</td>
+      <td>${car.Origin}</td>
+      <td>${car.Year}</td>
+    </tr>
+  </tbody>`
     );
   });
 };
 
 // main function:
 (async function () {
-  const cars = await getData();
-  console.log(cars);
-  renderData(cars);
+  try {
+    const cars = await getData();
+    renderData(cars);
+  } catch (error) {
+    console.error(error);
+  }
 })();
