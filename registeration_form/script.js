@@ -60,7 +60,7 @@ const dataValidation = (e) => {
     body: data,
   })
     .then((res) => res.json())
-    .then((result) => console.log(JSON.stringify(result)))
+    .then((result) => console.log(result))
     .catch((err) => console.log(err.message));
 
   cleardata();
