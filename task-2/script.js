@@ -14,6 +14,7 @@ const getData = async function (file) {
     return data;
   } catch (err) {
     console.error(err.message);
+    throw error;
   }
 };
 
@@ -39,7 +40,7 @@ const renderData = function (data) {
   try {
     const cars = await getData("./car.json");
     renderData(cars);
-  } catch (error) {
-    console.error(error);
+  } catch {
+    console.error("error");
   }
 })();
