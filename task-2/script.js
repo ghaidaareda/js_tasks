@@ -4,9 +4,9 @@
 const carsTable = document.querySelector("table");
 
 // gstting data from json file
-const getData = async function () {
+const getData = async function (file) {
   try {
-    const response = await fetch("./cars.json");
+    const response = await fetch(file);
     if (!response.ok)
       throw new Error(`something went wrong ${response.status}`);
 
@@ -24,10 +24,10 @@ const renderData = function (data) {
       "beforeend",
       `<tbody>
     <tr>
-      <td>${car.Name}</td>
-      <td>${car.Horsepower}</td>
-      <td>${car.Origin}</td>
-      <td>${car.Year}</td>
+      <td>${car.title}</td>
+      <td>${car.start_production}</td>
+      <td>${car.class}</td>
+      <td><a href=${car.image}><img src=${car.image} ></a></td>
     </tr>
   </tbody>`
     );
@@ -37,7 +37,7 @@ const renderData = function (data) {
 // main function:
 (async function () {
   try {
-    const cars = await getData();
+    const cars = await getData("./car.json");
     renderData(cars);
   } catch (error) {
     console.error(error);
