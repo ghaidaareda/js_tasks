@@ -7,8 +7,7 @@ const carsTable = document.querySelector("table");
 const getData = async function (file) {
   try {
     const response = await fetch(file);
-    if (!response.ok)
-      throw new Error(`something went wrong ${response.status}`);
+    if (!response.ok) throw new Error(`file not found ${response.status}`);
 
     const data = await response.json();
     return data;
@@ -41,6 +40,6 @@ const renderData = function (data) {
     const cars = await getData("./car.json");
     renderData(cars);
   } catch {
-    console.error("error");
+    console.error("data not found ");
   }
 })();
