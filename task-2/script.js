@@ -3,7 +3,7 @@
 //select element
 const carsTable = document.querySelector("table");
 
-// gstting data from json file
+// getting data from json file
 const getData = async function (file) {
   try {
     const response = await fetch(file);
@@ -13,7 +13,7 @@ const getData = async function (file) {
     return data;
   } catch (err) {
     console.error(err.message);
-    throw error;
+    throw err;
   }
 };
 
@@ -39,7 +39,7 @@ const renderData = function (data) {
   try {
     const cars = await getData("./car.json");
     renderData(cars);
-  } catch {
-    console.error("data not found ");
+  } catch (error) {
+    console.error(error);
   }
 })();
