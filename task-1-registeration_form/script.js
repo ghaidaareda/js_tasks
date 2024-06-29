@@ -9,6 +9,50 @@ const lastError = document.getElementById("lastError");
 const emailError = document.getElementById("emailError");
 const contactError = document.getElementById("contactError");
 
+//helper functions:
+
+// Show error message
+const showError = (element, message) => {
+  element.style.display = "block";
+  element.innerText = message;
+};
+
+// Clear error messages
+const clearError = (...params) => {
+  for (const ele of params) {
+    ele.style.display = "none";
+  }
+};
+
+// clear data again:
+const cleardata = () => {
+  document.getElementById("first").value = "";
+  document.getElementById("last").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("mobile").value = "";
+  document.getElementById("gender").value = "";
+};
+
+// posting validated form:
+const postRequest = async function (userInf, url) {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: userInf,
+    });
+
+    if (!response.ok) throw new Error(`failed request ${response.status}`);
+
+    const userData = await response.json();
+    console.log(userData);
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
 // Validate posted data
 const dataValidation = (e) => {
   e.preventDefault();
@@ -52,41 +96,10 @@ const dataValidation = (e) => {
 
   const data = JSON.stringify(dataObj);
 
-  fetch("https://reqres.in/api/users", {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: data,
-  })
-    .then((res) => res.json())
-    .then((result) => console.log(result))
-    .catch((err) => console.log(err.message));
+  postRequest(data, "https://reqres.in/api/users");
 
   cleardata();
 };
 
-// Show error message
-const showError = (element, message) => {
-  element.style.display = "block";
-  element.innerText = message;
-};
-
-// Clear error messages
-const clearError = (...params) => {
-  for (const ele of params) {
-    ele.style.display = "none";
-  }
-};
-
-// clear data again:
-const cleardata = () => {
-  document.getElementById("first").value = "";
-  document.getElementById("last").value = "";
-  document.getElementById("email").value = "";
-  document.getElementById("mobile").value = "";
-  document.getElementById("gender").value = "";
-};
-
-// Event
+// main Event :
 registerBtn.addEventListener("click", dataValidation);
