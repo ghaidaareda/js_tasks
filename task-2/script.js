@@ -40,7 +40,7 @@ const renderData = function (data) {
 // main function:
 (async function () {
   try {
-    const cars = await getData("./cars.json");
+    const cars = await getData("./car.json");
     renderData(cars);
   } catch (error) {
     console.error(error);
