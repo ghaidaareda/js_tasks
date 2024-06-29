@@ -25,7 +25,7 @@ const renderData = function (data) {
   // 1- create table + table header
   let table = displayTable("Title", "Production Year", "Class", "Image");
 
-  // create table body:
+  // create table body and check car object properties:
   data.forEach((car) => {
     let tbody =
       car.title !== ""
@@ -39,6 +39,7 @@ const renderData = function (data) {
         : null;
     if (tbody) table.appendChild(tbody);
   });
+  carsTable.appendChild(table);
 };
 
 // main function:
