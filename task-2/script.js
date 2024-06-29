@@ -1,7 +1,7 @@
-import { fileError } from "./utility.js";
+import { fileError, displayTable, displayTableBody } from "./utility.js";
 
 //select element
-const carsTable = document.querySelector("table");
+const carsTable = document.querySelector("#table-container");
 
 // getting data from json file
 const getData = async function (file) {
@@ -22,18 +22,18 @@ const getData = async function (file) {
 
 //render data on html
 const renderData = function (data) {
+  // 1- create table + table header
+  let table = displayTable("Title", "Production Year", "Class", "Image");
+
+  // create table body:
   data.forEach((car) => {
-    carsTable.insertAdjacentHTML(
-      "beforeend",
-      `<tbody>
-    <tr>
-      <td>${car.title}</td>
-      <td>${car.start_production}</td>
-      <td>${car.class}</td>
-      <td><a href=${car.image}><img src=${car.image} ></a></td>
-    </tr>
-  </tbody>`
+    let tbody = displayTableBody(
+      car.title,
+      car.start_production,
+      car.class,
+      car.image
     );
+    table.appendChild(tbody);
   });
 };
 
