@@ -1,7 +1,9 @@
+// exporting module:
+
 // object for all helper functions needed to validate data and handling error
 
-// function to run if file not exise or empty render something in html (file not found or data not found )
-const fileError = function (responseStatus) {
+// function to run if file not exise or empty:
+export const fileError = function (responseStatus) {
   const p = document.createElement("p");
   p.innerText = `Page does not exist (${responseStatus})`;
   document.body.appendChild(p);

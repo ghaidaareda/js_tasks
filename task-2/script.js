@@ -1,4 +1,4 @@
-"use strict";
+import { fileError } from "./utility.js";
 
 //select element
 const carsTable = document.querySelector("table");
@@ -7,7 +7,10 @@ const carsTable = document.querySelector("table");
 const getData = async function (file) {
   try {
     const response = await fetch(file);
-    if (!response.ok) throw new Error(`file not found ${response.status}`);
+    if (!response.ok) {
+      fileError(response.status);
+      throw new Error(`file not found ${response.status}`);
+    }
 
     const data = await response.json();
     return data;
@@ -37,7 +40,7 @@ const renderData = function (data) {
 // main function:
 (async function () {
   try {
-    const cars = await getData("./car.json");
+    const cars = await getData("./cars.json");
     renderData(cars);
   } catch (error) {
     console.error(error);
