@@ -27,13 +27,17 @@ const renderData = function (data) {
 
   // create table body:
   data.forEach((car) => {
-    let tbody = displayTableBody(
-      car.title,
-      car.start_production,
-      car.class,
-      car.image
-    );
-    table.appendChild(tbody);
+    let tbody =
+      car.title !== ""
+        ? displayTableBody(
+            car.title,
+            car.start_production || "No data avaliable",
+            car.class || "No data avalible",
+            car.image ||
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSotEQiQ4uV2BL4OkozQIs-dAoeF9HD7b4aew&s"
+          )
+        : null;
+    if (tbody) table.appendChild(tbody);
   });
 };
 

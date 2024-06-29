@@ -44,17 +44,3 @@ export const displayTableBody = function (...cardata) {
   tbody.appendChild(row);
   return tbody;
 };
-
-/*
-  Table.insertAdjacentHTML(
-    "beforeend",
-    `<tbody>
-  <tr>
-    <td>${car.title}</td>
-    <td>${car.start_production}</td>
-    <td>${car.class}</td>
-    <td><a href=${car.image}><img src=${car.image} ></a></td>
-  </tr>
-</tbody>`
-  );
-*/
