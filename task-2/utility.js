@@ -1,9 +1,9 @@
 // exporting module:
 
 // 1 - function to run if file not exise or empty:
-export const fileError = function (responseStatus) {
+export const fileError = function (textMessage) {
   const p = document.createElement("p");
-  p.innerText = `Page does not exist (${responseStatus})`;
+  p.innerText = textMessage;
   document.body.appendChild(p);
 };
 

@@ -8,7 +8,7 @@ const getData = async function (file) {
   try {
     const response = await fetch(file);
     if (!response.ok) {
-      fileError(response.status);
+      fileError(`Page does not exist (${response.status})`);
       throw new Error(`file not found ${response.status}`);
     }
 
@@ -41,6 +41,11 @@ const renderData = function (data) {
 (async function () {
   try {
     const cars = await getData("./car.json");
+    //console.log(cars);
+    if (cars.length === 0) {
+      fileError(`No data available rigth now `);
+      return;
+    }
     renderData(cars);
   } catch (error) {
     console.error(error);
