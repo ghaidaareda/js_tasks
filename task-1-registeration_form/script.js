@@ -44,7 +44,11 @@ const postRequest = async function (userInf, url) {
       body: userInf,
     });
 
-    if (!response.ok) throw new Error(`failed request ${response.status}`);
+    if (!response.ok) {
+      alert("you have failed to register please try again ☹");
+      cleardata();
+      throw new Error(`failed request ${response.status}`);
+    }
 
     const userData = await response.json();
     console.log(userData);
@@ -99,6 +103,11 @@ const dataValidation = (e) => {
   postRequest(data, "https://reqres.in/api/users");
 
   cleardata();
+  alert(`Thanks for registeration your data:
+    name : ${firstName} ${lastName},
+    email: ${email},
+    contact: ${contact},
+    gender: ${gender}`);
 };
 
 // main Event :
