@@ -1,7 +1,7 @@
 import { fileError, displayTable, displayTableBody } from "./utility.js";
 
 //select element
-const carsTable = document.querySelector("#table-container");
+const tableContainer = document.querySelector("#table-container");
 
 // getting data from json file
 const getData = async function (file) {
@@ -39,7 +39,7 @@ const renderData = function (data) {
         : null;
     if (tbody) table.appendChild(tbody);
   });
-  carsTable.appendChild(table);
+  tableContainer.appendChild(table);
 };
 
 // main function:

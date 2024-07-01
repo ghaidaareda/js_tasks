@@ -10,7 +10,7 @@ const validateCarObject = function (obj) {
   // properties: image, title , start_production, class
 };
 
-// 3-function to create (table) header:
+// 3-function to create (table) head:
 export const displayTable = function (...properties) {
   let table = document.createElement("table");
   let thead = document.createElement("thead");
