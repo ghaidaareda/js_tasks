@@ -1,0 +1,10 @@
+body {
+  background-color: #999;
+}
+#opening {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
+  height: 100vh;
+}
