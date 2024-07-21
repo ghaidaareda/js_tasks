@@ -11,7 +11,7 @@ const getCoords = async function () {
 
       const lat = position.coords.latitude;
       const long = position.coords.longitude;
-      const city = await getCity([lat, long]);
+      const city = await getCurrentCityLocation([lat, long]);
       return city;
     } catch (error) {
       console.error(`Failed to get your position: ${error}`);
@@ -21,7 +21,7 @@ const getCoords = async function () {
   }
 };
 
-const getCity = async function (coords) {
+const getCurrentCityLocation = async function (coords) {
   const [lat, long] = coords;
   const url = `http://api.openweathermap.org/geo/1.0/reverse?`;
   try {
@@ -45,21 +45,25 @@ const getCity = async function (coords) {
 (async () => {
   const city = await getCoords();
   console.log(city);
+  const res = await getWeatherByCity(city);
+  console.log(res);
 })();
 
 // geting weather data:
 
-const getWeatherBySearch = async function (city) {
+const getWeatherByCity = async function (city) {
   try {
     const response = await fetch(`
       https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a533a789f05c61b81a2a562d029bf6ba`);
     if (!response.ok)
       throw new Error(`city not found. Status: ${response.status}`);
     const data = await response.json();
+
     console.log(data);
+    return data;
   } catch (error) {
     console.error(error.message);
   }
 };
 
-getWeatherBySearch("Cairo");
+getWeatherByCity("barcelona");
