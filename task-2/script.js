@@ -1,14 +1,6 @@
-fetch("./noblists.json")
-.then(function(response) {
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
-    }
-    return response.json();
-})
-.then(function(noblists) {
-    let placeholder = document.querySelector("#data-output");
+const tabledata = function(data){
     let output = "";
-    for (let item of noblists){
+    for (let item of data){
         output += `
             <tr>
             <td><img src='${item.image}'></td>
@@ -21,7 +13,18 @@ fetch("./noblists.json")
             </tr>
         `;
     }
-
+    return output;
+}
+fetch("./noblists.json")
+.then(function(response) {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+})
+.then(function(noblists) {
+    let placeholder = document.querySelector("#data-output");
+    let output = tabledata(noblists)
     placeholder.innerHTML = output;
 
 })
